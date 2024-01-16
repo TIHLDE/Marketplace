@@ -1,0 +1,196 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Discount {
+  id               String    @id @default(cuid())
+  name             String
+  description      String
+  discount_percent Int
+  active           Boolean   @default(true)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  product          Product[]
+}
+
+model Image {
+  id               String             @id @default(cuid())
+  url              String
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  imagesonproducts ImagesOnProducts[]
+}
+
+model ImagesOnProducts {
+  productId String
+  imageId   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  order     Int
+  image     Image    @relation(fields: [imageId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@id([productId, imageId])
+}
+
+model Product {
+  id            String             @id @default(cuid())
+  name          String
+  description   String             @db.Text
+  price         Int
+  preOrder      Boolean            @default(false)
+  categoryId    String
+  discountId    String?
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+  total_stock   Int
+  archived      Boolean            @default(false)
+  current_stock Int
+  featured      Boolean            @default(false)
+  seller        String
+  information   String?            @db.Text
+  images        ImagesOnProducts[]
+  sizes         Stock[]
+  category      ProductCategory    @relation(fields: [categoryId], references: [id])
+  discount      Discount?          @relation(fields: [discountId], references: [id])
+}
+
+model Stock {
+  id            String                   @unique @default(cuid())
+  productId     String
+  sizeId        String
+  stock         Int
+  current_stock Int                      @default(0)
+  createdAt     DateTime                 @default(now())
+  updatedAt     DateTime                 @updatedAt
+  product       Product                  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  size          Size                     @relation(fields: [sizeId], references: [id], onDelete: Cascade)
+  orders        ProductsOnPaymentOrder[]
+
+  @@id([productId, sizeId])
+}
+
+model PaymentOrder {
+  id           String                   @id @default(uuid())
+  payment_url  String                   @db.Text
+  status       order_status             @default(INITIATE)
+  userId       String
+  user         User                     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  total_price  Int
+  products     ProductsOnPaymentOrder[]
+  accessToken  String?                  @db.Text
+  expiresAt    String?
+  updatedStock Boolean                  @default(false)
+  createdAt    DateTime                 @default(now())
+  updatedAt    DateTime                 @updatedAt
+}
+
+model ProductsOnPaymentOrder {
+  paymentOrderId String
+  productId      String
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  paymentOrder   PaymentOrder @relation(fields: [paymentOrderId], references: [id], onDelete: Cascade)
+  product_count  Int          @default(1)
+  product        Stock        @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@id([paymentOrderId, productId])
+}
+
+model ProductCategory {
+  id          String    @id @default(cuid())
+  name        String
+  description String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  product     Product[]
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Size {
+  id        String   @id @default(cuid())
+  name      String
+  value     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  products  Stock[]
+}
+
+model User {
+  id             String         @id @default(cuid())
+  tihlde_user_id String         @unique
+  email          String         @unique
+  image          String?
+  role           user_role      @default(MEMBER)
+  createdAt      DateTime       @default(now())
+  name           String
+  account        Account[]
+  session        Session[]
+  paymentOrders  PaymentOrder[]
+  notifications  Notification[]
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  title     String
+  body      String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+enum user_role {
+  MEMBER
+  ADMIN
+  SUPERADMIN
+}
+
+enum order_status {
+  INITIATE
+  RESERVED
+  CAPTURE
+  CANCEL
+  REFUND
+  SALE
+}
