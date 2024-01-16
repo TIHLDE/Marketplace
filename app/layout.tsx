@@ -1,5 +1,6 @@
-import type { Metadata, Viewport } from 'next'
-import './globals.css'
+import type { Metadata, Viewport } from 'next';
+import './globals.css';
+import { Inter as FontSans } from 'next/font/google';
 import NavBar from './NavBar'
 import AuthProvider from './auth/provider'
 import QueryClientProvider from './QueryClientProvider';
@@ -8,7 +9,6 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from './Footer';
 import Providers from './providers';
-import Script from 'next/script';
 
 
 export const viewport: Viewport = {
@@ -22,13 +22,18 @@ export const metadata: Metadata = {
   description: 'Laget av Mads Nylund'
 }
 
+export const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+})
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <html className='font-sans' lang="no">
+    <html className={fontSans.variable} lang="no">
       <body className='bg-white text-gray-950'>
       <QueryClientProvider>
         <AuthProvider>

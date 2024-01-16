@@ -14,15 +14,6 @@ const NavBar = () => {
                         alt='Logo' 
                     />
                 </Link>
-                <Link 
-                    href='/products'
-                    className='text-tihlde text-sm hover:text-[#ff5050] flex items-center space-x-1'
-                >
-                    <RocketIcon />
-                    <h1>
-                        Produkter
-                    </h1>
-                </Link>
             </div>
             <Header />
         </nav>

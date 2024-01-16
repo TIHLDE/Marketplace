@@ -8,6 +8,7 @@ import { getDiscountEditPagePaths } from "@/app/utils/paths";
 import HeaderWrapper from "../../_components/wrapper/Header";
 import ContentWrapper from "../../_components/wrapper/Content";
 import FormWrapper from "../../_components/wrapper/Form";
+import UnderConstruction from "@/app/components/UnderConstructions";
 
 
 interface EditDiscountProps {
@@ -15,6 +16,7 @@ interface EditDiscountProps {
 };
 
 const EditDiscount = async ({ params }: EditDiscountProps) => {
+    return <UnderConstruction />;
     const discounts = await getDiscounts(true);
 
     const discount = discounts.find(discount => discount.id === params.id);

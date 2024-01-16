@@ -1,7 +1,9 @@
 import Link from "next/link";
+import UnderConstruction from "../components/UnderConstructions";
 
 
 const OrdersPage = () => {
+    return <UnderConstruction />;
     return (
         <div className='max-w-6xl w-full py-12 mx-auto px-32'>
             <div className='space-y-4 pb-20'>

@@ -17,7 +17,7 @@ export default function Home() {
             Velkommen til TIHLDE sin egen nettbutikk. Her vil du finne produkter som TIHLDE selger, og interesseskjemaer relatert til produkter.
           </p>
           
-          <div className='flex justify-center pt-4'>
+          {/* <div className='flex justify-center pt-4'>
             <Link 
               href='/products'
               className='text-tihlde-600 flex items-center space-x-2 font-semibold text-lg hover:text-tihlde-900'
@@ -27,15 +27,15 @@ export default function Home() {
               </h1>
               <ArrowRightIcon />
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
 
-      <div className='space-y-28'>
+      {/* <div className='space-y-28'>
         <FeaturedProducts />
         <LatestProducts />
         <PreOrderProducts />
-      </div>
+      </div> */}
     </div>
   )
 }

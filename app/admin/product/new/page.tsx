@@ -9,9 +9,11 @@ import PathNavigation from "@/app/components/links/PathNavigation";
 import { PRODUCT_NEW_PAGE_PATHS } from "@/app/utils/paths";
 import ContentWrapper from "../../_components/wrapper/Content";
 import FormWrapper from "../../_components/wrapper/Form";
+import UnderConstruction from "@/app/components/UnderConstructions";
 
 
 const NewProduct = async () => {
+    return <UnderConstruction />;
     const sizes = await getSizes();
     const categories = await getCategories();
     const discounts = await getDiscounts();

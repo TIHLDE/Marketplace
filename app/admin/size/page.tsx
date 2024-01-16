@@ -9,6 +9,7 @@ import PathNavigation from "@/app/components/links/PathNavigation";
 import { SIZE_PAGE_PATHS } from "@/app/utils/paths";
 import { getSizeCount, getSizes } from "@/app/db/size";
 import Pagination from "@/app/components/Pagination";
+import UnderConstruction from "@/app/components/UnderConstructions";
 
 
 export interface SizeQuery {
@@ -20,6 +21,7 @@ interface SizePageProps {
 };
 
 const Size = async ({ searchParams }: SizePageProps) => {
+    return <UnderConstruction />;
     const page = parseInt(searchParams.page) || 1;
     const pageSize = 10;
 

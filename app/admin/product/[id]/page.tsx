@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import PathNavigation from "@/app/components/links/PathNavigation";
 import { PRODUCT_PAGE_PATHS } from "@/app/utils/paths";
 import EditLink from "@/app/components/links/Edit";
+import UnderConstruction from "@/app/components/UnderConstructions";
 
 
 interface ProductProps {
@@ -13,6 +14,7 @@ interface ProductProps {
 };
 
 const ProductPage = async ({ params }: ProductProps) => {
+    return <UnderConstruction />;
     const product = await getProduct(params.id);
 
     if (!product) notFound();

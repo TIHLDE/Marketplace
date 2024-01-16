@@ -8,6 +8,7 @@ import { getCategories, getCategoryCount } from "@/app/db/category";
 import { CATEGORY_PAGE_PATHS } from "@/app/utils/paths";
 import HeaderWrapper from "../_components/wrapper/Header";
 import Pagination from "@/app/components/Pagination";
+import UnderConstruction from "@/app/components/UnderConstructions";
 
 
 export interface CategoryQuery {
@@ -19,6 +20,7 @@ interface CategoryPageProps {
 };
 
 const Category = async ({ searchParams }: CategoryPageProps) => {
+    return <UnderConstruction />;
     const page = parseInt(searchParams.page) || 1;
     const pageSize = 10;
 

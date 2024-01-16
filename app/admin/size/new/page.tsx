@@ -6,9 +6,11 @@ import PathNavigation from '@/app/components/links/PathNavigation';
 import { SIZE_NEW_PAGE_PATHS } from '@/app/utils/paths';
 import ContentWrapper from '../../_components/wrapper/Content';
 import FormWrapper from '../../_components/wrapper/Form';
+import UnderConstruction from "@/app/components/UnderConstructions";
 
 
 const NewSize = async () => {
+    return <UnderConstruction />;
     return (
         <Template>
             <HeaderWrapper>

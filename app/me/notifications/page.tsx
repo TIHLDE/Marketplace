@@ -1,9 +1,12 @@
 import { getMyNotifications } from "@/app/db/notification";
 import NotificationItem from "./Notification";
 import Empty from "@/app/admin/_components/Empty";
+import UnderConstruction from "@/app/components/UnderConstructions";
 
 
 const NotificationsPage = async () => {
+    return <UnderConstruction />;
+
     const notifications = await getMyNotifications();
 
     return (

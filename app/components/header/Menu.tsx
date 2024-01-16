@@ -50,7 +50,7 @@ const Menu = ({ session }: { session: Session | null }) => {
                                 </div>
                             </div>
 
-                            <div className='pb-2'>
+                            {/* <div className='pb-2'>
                                 <DropdownItem
                                     close={closeMenu}
                                     text='Mine varsler'
@@ -61,9 +61,9 @@ const Menu = ({ session }: { session: Session | null }) => {
 
                             <Separator 
                                 orientation='horizontal'
-                            />
+                            /> */}
 
-                            <div className='mt-2 space-y-2 pb-2'>
+                            {/* <div className='mt-2 space-y-2 pb-2'>
                                 <DropdownItem
                                     close={closeMenu} 
                                     text='Mine betalingsordre'
@@ -80,7 +80,7 @@ const Menu = ({ session }: { session: Session | null }) => {
 
                             <Separator 
                                 orientation='horizontal'
-                            />
+                            /> */}
 
                             <div className='mt-2 space-y-2 pb-2'>
                                 <DropdownItem
@@ -89,12 +89,12 @@ const Menu = ({ session }: { session: Session | null }) => {
                                     href='/me/events'
                                     icon={<MixIcon />}
                                 />
-                                <DropdownItem
+                                {/* <DropdownItem
                                     close={closeMenu} 
                                     text='Mine forespørsler'
                                     href='/me/requests'
                                     icon={<QuestionMarkIcon />}
-                                />
+                                /> */}
                             </div>
 
                             <Separator 
@@ -111,7 +111,7 @@ const Menu = ({ session }: { session: Session | null }) => {
                                                 href='/admin'
                                                 icon={<BarChartIcon />}
                                             />
-                                            <DropdownItem
+                                            {/* <DropdownItem
                                                 close={closeMenu} 
                                                 text='Produkter'
                                                 href='/admin/product'
@@ -122,7 +122,7 @@ const Menu = ({ session }: { session: Session | null }) => {
                                                 text='Nytt produkt'
                                                 href='/admin/product/new'
                                                 icon={<PlusIcon />}
-                                            />
+                                            /> */}
                                         </div>
                                     </>
                                 )

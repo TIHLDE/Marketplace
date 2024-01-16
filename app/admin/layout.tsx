@@ -15,74 +15,32 @@ import * as HoverCard from '@radix-ui/react-hover-card';
 
 
 const AdminLayout = ({ children }: { children: React.ReactNode } ) => {
-    // const links = [
-    //     {
-    //         label: 'Dashboard',
-    //         href: '/admin',
-    //         icon: <HomeIcon />,
-    //         children: []
-    //     },
-    //     {
-    //         label: 'Produkter',
-    //         href: '/admin/product',
-    //         icon: <LightningBoltIcon />,
-    //         children: [
-    //             {
-    //                 label: 'Alle produkter',
-    //                 description: 'Oversikt over alle produkter, og mulighet for å opprette og redigere produkter.',
-    //                 href: '/admin/product'
-    //             },
-    //             {
-    //                 label: 'Produktkategorier',
-    //                 description: 'Oversikt over alle kategorier, og mulighet for å opprette og redigere kategorier.',
-    //                 href: '/admin/category'
-    //             },
-    //             {
-    //                 label: 'Produktstørrelser',
-    //                 description: 'Overiskt over alle størrelser, og mulighet for å opprette og redigere størrelser.',
-    //                 href: '/admin/size'
-    //             },
-    //             {
-    //                 label: 'Produktrabatter',
-    //                 description: 'Overiskt over alle rabatter, og mulighet for å opprette og redigere rabatter.',
-    //                 href: '/admin/discount'
-    //             }
-    //         ]
-    //     },
-    //     {
-    //         label: 'Brukere',
-    //         href: '/admin/user',
-    //         icon: <PersonIcon />,
-    //         children: []
-    //     }
-    // ];
-
     const links = [
         {
             label: 'Oversikt',
             href: '/admin',
             icon: <HomeIcon />
         },
-        {
-            label: 'Produkter',
-            href: '/admin/product',
-            icon: <LightningBoltIcon />
-        },
-        {
-            label: 'Kategorier',
-            href: '/admin/category',
-            icon: <BookmarkIcon />
-        },
-        {
-            label: 'Størrelser',
-            href: '/admin/size',
-            icon: <DimensionsIcon />
-        },
-        {
-            label: 'Rabatter',
-            href: '/admin/discount',
-            icon: <RocketIcon />
-        },
+        // {
+        //     label: 'Produkter',
+        //     href: '/admin/product',
+        //     icon: <LightningBoltIcon />
+        // },
+        // {
+        //     label: 'Kategorier',
+        //     href: '/admin/category',
+        //     icon: <BookmarkIcon />
+        // },
+        // {
+        //     label: 'Størrelser',
+        //     href: '/admin/size',
+        //     icon: <DimensionsIcon />
+        // },
+        // {
+        //     label: 'Rabatter',
+        //     href: '/admin/discount',
+        //     icon: <RocketIcon />
+        // },
         {
             label: 'Brukere',
             href: '/admin/user',

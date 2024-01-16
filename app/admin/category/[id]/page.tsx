@@ -12,6 +12,7 @@ import { CATEGORY_EDIT_PAGE_PATHS } from "@/app/utils/paths";
 import HeaderWrapper from "../../_components/wrapper/Header";
 import ContentWrapper from "../../_components/wrapper/Content";
 import FormWrapper from "../../_components/wrapper/Form";
+import UnderConstruction from "@/app/components/UnderConstructions";
 
 
 interface EditCategoryProps {
@@ -19,6 +20,7 @@ interface EditCategoryProps {
 };
 
 const EditCategory = async ({ params }: EditCategoryProps) => {
+    return <UnderConstruction />;
     const category = await getCategory(params.id);
 
     if (!category) notFound();

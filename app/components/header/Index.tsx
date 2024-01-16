@@ -12,7 +12,7 @@ const Header = () => {
 
     return (
         <header className='flex items-center space-x-6'>
-            { status === 'authenticated' && <Cart /> }
+            {/* { status === 'authenticated' && <Cart /> } */}
 
             <div>
                 { status === 'loading' && <AvatarSkeleton /> }

@@ -7,9 +7,11 @@ import { DISCOUNT_NEW_PAGE_PATHS } from "@/app/utils/paths";
 import HeaderWrapper from "../../_components/wrapper/Header";
 import ContentWrapper from "../../_components/wrapper/Content";
 import FormWrapper from "../../_components/wrapper/Form";
+import UnderConstruction from "@/app/components/UnderConstructions";
 
 
 const NewDiscount = async () => {
+    return <UnderConstruction />;
     const discounts = await getDiscounts(true);
 
     return (

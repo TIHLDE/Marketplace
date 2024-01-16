@@ -9,6 +9,7 @@ import PathNavigation from "@/app/components/links/PathNavigation";
 import { getSizeEditPagePaths } from "@/app/utils/paths";
 import ContentWrapper from "../../_components/wrapper/Content";
 import FormWrapper from "../../_components/wrapper/Form";
+import UnderConstruction from "@/app/components/UnderConstructions";
 
 
 interface EditSizeProps {
@@ -16,6 +17,7 @@ interface EditSizeProps {
 };
 
 const EditSize = async ({ params }: EditSizeProps) => {
+    return <UnderConstruction />;
     const size = await getSize(params.id);
 
     if (!size) notFound();

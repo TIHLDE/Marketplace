@@ -8,6 +8,7 @@ import HeaderWrapper from "../_components/wrapper/Header";
 import PathNavigation from "@/app/components/links/PathNavigation";
 import { PRODUCT_PAGE_PATHS } from "@/app/utils/paths";
 import Pagination from "@/app/components/Pagination";
+import UnderConstruction from "@/app/components/UnderConstructions";
 
 
 export interface ProductQuery {
@@ -19,6 +20,7 @@ interface ProductPageProps {
 };
 
 const ProductPage = async ({ searchParams }: ProductPageProps) => {
+    return <UnderConstruction />;
     const page = parseInt(searchParams.page) || 1;
     const pageSize = 10;
 
