@@ -2,7 +2,10 @@
 
 import editUserRole from "@/app/actions/update-userRole";
 import Role from "@/app/enums/role";
+import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { $Enums, User } from "@prisma/client";
+// import { SelectContent, SelectItem } from "@radix-ui/react-select";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { useFormState, useFormStatus } from "react-dom";
@@ -46,21 +49,29 @@ const UserRole = ({ user }: UserRoleProps) => {
             action={formAction}
             className='flex items-center space-x-2'
         >
-            <select
+            <Select
                 name='role'
-                className='outline-none border border-gray-300 rounded-md px-3 py-2 cursor-pointer'
-                defaultValue={user.role}
             >
-                <option value={Role.MEMBER}>Bruker</option>
-                <option value={Role.ADMIN}>Admin</option>
-                <option value={Role.SUPERADMIN}>Superadmin</option>
-            </select>
-            <button
+                <SelectTrigger className='w-[180px]'>
+                    <SelectValue placeholder='Rolle' />
+                </SelectTrigger>
+                <SelectContent>
+                    <SelectItem value={Role.MEMBER}>Bruker</SelectItem>
+                    <SelectItem value={Role.ADMIN}>Admin</SelectItem>
+                    <SelectItem value={Role.SUPERADMIN}>Superadmin</SelectItem>
+                </SelectContent>
+            </Select>
+            <Button
+                disabled={pending}
+            >
+                { pending ? 'Oppdaterer...' : 'Oppdater' }
+            </Button>
+            {/* <button
                 disabled={pending}
                 className='bg-gradient-to-r from-tihlde-500 to-tihlde-700 text-white hover:from-tihlde-600 hover:to-tihlde-700 transition duration-150 ease-in-out font-semibold rounded-md py-2 px-6'
             >
                 { pending ? 'Oppdaterer...' : 'Oppdater'}
-            </button>
+            </button> */}
         </form>
     );
 };

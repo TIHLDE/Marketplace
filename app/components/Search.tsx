@@ -1,5 +1,6 @@
 'use client';
 
+import { Button } from "@/components/ui/button";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
@@ -38,19 +39,17 @@ const Search = () => {
                     className='focus:outline-none w-full px-2 py-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-300 rounded-md'
                     placeholder='Søk...'
                 />
-                <button
-                    className='rounded-md border border-gray-300 bg-gray-50 px-6 py-2 font-semibold'
-                > 
+                <Button>
                     Søk
-                </button>
+                </Button>
             </form>
-            <button
+            <Button
+                variant={'secondary'}
                 onClick={reset}
-                className='rounded-md border border-gray-300 bg-gray-50 px-6 py-2 font-semibold'
             >
                 Nullstill
-            </button>
-        </div>
+            </Button>
+    </div>
     );
 };
 
