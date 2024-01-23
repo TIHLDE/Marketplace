@@ -1,7 +1,7 @@
 import { getTIHLDEUser, loginToTIHLDE } from "@/app/tihlde/auth";
 
 import prisma from "@/prisma/client";
-import { IS_PRODUCTION } from "@/prisma/serverEnv";
+import { IS_PRODUCTION, TIHLDE_FAKE_TOKEN } from "@/prisma/serverEnv";
 
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { AuthOptions, Session, User } from "next-auth";
@@ -30,7 +30,7 @@ const authOptions: AuthOptions = {
                             }
                         });
 
-                        return user;
+                        return TIHLDE_FAKE_TOKEN && user ? { ...user, tihldeUserToken: TIHLDE_FAKE_TOKEN } : null;
                     }
 
                     const tihldeUserToken = await loginToTIHLDE(credentials.username, credentials.password);
@@ -42,7 +42,7 @@ const authOptions: AuthOptions = {
                             tihlde_user_id: credentials.username
                         }
                     });
-
+                    
                     if (!user) {
                         const tihldeUser = await getTIHLDEUser(tihldeUserToken, credentials.username);
                         const newUser = await prisma.user.create({
@@ -56,10 +56,9 @@ const authOptions: AuthOptions = {
                         
                         });
 
-                        return newUser;
-                    };
-    
-                    return user;
+                        return { ...newUser, tihldeUserToken};
+                    };  
+                    return { ...user, tihldeUserToken };
                 } catch (error) {
                     return null;
                 }
@@ -76,13 +75,15 @@ const authOptions: AuthOptions = {
                 token.role = user.role;
                 // @ts-ignore
                 token.tihldeId = user.tihlde_user_id;
+                // @ts-ignore
+                token.tihldeUserToken = user.tihldeUserToken;
             }
 
             return token;
         },
 
         async session({ session, token }: { session: Session, token: JWT }) {
-            return { ...session, role: token.role, tihldeId: token.tihldeId };
+            return { ...session, role: token.role, tihldeId: token.tihldeId, tihldeUserToken: token.tihldeUserToken };
         }
     },
     session: {

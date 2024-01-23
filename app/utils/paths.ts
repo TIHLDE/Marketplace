@@ -14,6 +14,8 @@ export const PRODUCT_VIEW_PAGE_PATHS: PathProps[] = [
 ];
 
 const ADMIN_PATH = '/admin';
+const ADMIN_EVENTS_PATH = `${ADMIN_PATH}/events`;
+const ADMIN_EVENTS_TRANSACTIONS_PATH = `${ADMIN_EVENTS_PATH}/transactions`;
 const ADMIN_STATS_PATH = `${ADMIN_PATH}/stats`;
 const ADMIN_PRODUCTSTATS_PATH = `${ADMIN_STATS_PATH}/products`;
 const ADMIN_PRODUCT_TRANSACTIONS_PATH = `${ADMIN_PRODUCTSTATS_PATH}/transactions`;
@@ -27,6 +29,12 @@ const ADMIN_CATEGORY_EDIT_PATH = `${ADMIN_CATEGORY_PATH}/edit`;
 const ADMIN_DISCOUNT_PATH = `${ADMIN_PATH}/discount`;
 const ADMIN_DISCOUNT_NEW_PATH = `${ADMIN_DISCOUNT_PATH}/new`;
 const ADMIN_SIZE_PATH = `${ADMIN_PATH}/size`;
+
+export const ADMIN_EVENTS_TRANSACTIONS_PATHS: PathProps[] = [
+    { title: 'Dashboard', href: ADMIN_PATH },
+    { title: 'Arrangementer', href: ADMIN_EVENTS_PATH },
+    { title: 'Transaksjoner', href: ADMIN_EVENTS_TRANSACTIONS_PATH }
+];
 
 export const ADMIN_USER_PAGE_PATHS: PathProps[] = [
     { title: 'Dashboard', href: ADMIN_PATH },

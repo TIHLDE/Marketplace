@@ -3,6 +3,7 @@ import Header from "@/app/admin/_components/Header";
 import Template from "@/app/admin/_components/Template";
 import HeaderWrapper from "@/app/admin/_components/wrapper/Header";
 import ProductTransactionTable from "@/app/admin/stats/products/transactions/TransactionTable";
+import UnderConstruction from "@/app/components/UnderConstructions";
 import PathNavigation from "@/app/components/links/PathNavigation";
 import { getUserProductTransactions } from "@/app/db/paymentOrder";
 import { getUser } from "@/app/db/user";
@@ -20,6 +21,7 @@ interface UserProps {
 };
 
 const UserProductTransactionsPage = async ({ params, searchParams }: UserProps) => {
+    return <UnderConstruction />;
     const page = parseInt(searchParams.page) || 1;
     const pageSize = 10;
 

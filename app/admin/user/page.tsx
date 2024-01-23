@@ -8,6 +8,7 @@ import Pagination from "@/app/components/Pagination";
 import Empty from "../_components/Empty";
 import UserTable from "./UserTable";
 import Search from "@/app/components/Search";
+import { TableQueryWrapper } from "@/components/table";
 
 
 interface UserQuery {
@@ -44,14 +45,14 @@ const UserPage = async ({ searchParams }: UserPageProps) => {
                 </div>
             </HeaderWrapper>
 
-            <div className='flex items-center justify-between space-x-6 pb-4'>
+            <TableQueryWrapper>
                 { (users.length > 0 || search.length > 0) && <Search /> }
                 <Pagination 
                     pageSize={pageSize}
                     currentPage={page}
                     itemCount={userCount}
                 />
-            </div>
+            </TableQueryWrapper>
 
             { !users.length
                 ? <Empty text='Fant ingen brukere' />

@@ -14,10 +14,10 @@ const Admin = () => {
         //     href: '/admin/stats/products'
         // },
         {
-            title: 'Arrangementer',
-            description: 'Oversikt over alle betalte arrangementer',
+            title: 'Transaskjoner',
+            description: 'Oversikt over transaksjoner for alle betalte arrangementer',
             icon: <LightningBoltIcon className='w-6 h-6 text-tihlde-500' />,
-            href: '/admin/stats/events'
+            href: '/admin/events/transactions'
         },
         // {
         //     title: 'Produkttransaksjoner',
