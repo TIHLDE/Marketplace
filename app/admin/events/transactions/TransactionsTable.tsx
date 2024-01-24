@@ -1,6 +1,7 @@
 import getFallbackName from "@/app/functions/getFallbackName";
 import { EventTransactionResult } from "@/app/tihlde/transactions";
 import { TableCell, TableHead, TableWrapper } from "@/components/table";
+import { TableHeadSort } from "@/components/table/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Table, TableBody, TableHeader, TableRow } from "@/components/ui/table";
 import { convertTransactionStatus } from "@/lib/utils";
@@ -29,7 +30,11 @@ const TransactionsTable = async ({ transactions }: TransactionsTableProps) => {
                             Status
                         </TableHead>
                         <TableHead>
-                            Opprettet
+                            <TableHeadSort
+                                query='created_at'
+                            >
+                                Opprettet
+                            </TableHeadSort>
                         </TableHead>
                         <TableHead edit />
                     </TableRow>
