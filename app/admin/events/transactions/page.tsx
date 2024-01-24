@@ -6,15 +6,17 @@ import Header from "../../_components/Header";
 import TransactionsTable from "./TransactionsTable";
 import { getTransactions } from "@/app/tihlde/transactions";
 import { TableQueryWrapper } from "@/components/table";
-import { SearchBar } from "@/components/search";
+import { QueryReset, QuerySelect, SearchBar } from "@/components/search";
 import Empty from "../../_components/Empty";
 import { Pagination } from "@/components/pagination";
+import { paymentStatusValues } from "@/lib/utils";
 
 
 interface TransactionsQuery {
     page: string;
     search: string;
     ordering: string;
+    status: string;
 };
 
 interface TransactionsPageProps {
@@ -27,11 +29,13 @@ const EventsTransactionsPage = async ({ searchParams }: TransactionsPageProps) =
 
     const search = searchParams.search || '';
     const ordering = searchParams.ordering || '';
+    const status = searchParams.status || '';
 
     const transactions = await getTransactions(
         page,
         search,
-        ordering
+        ordering,
+        status
     );
 
     return (
@@ -47,7 +51,15 @@ const EventsTransactionsPage = async ({ searchParams }: TransactionsPageProps) =
             </HeaderWrapper>
 
             <TableQueryWrapper>
-                { (transactions.results.length > 0 || search.length > 0) && <SearchBar />}
+                <div className='flex items-center space-x-2'>
+                    <SearchBar />
+                    <QuerySelect 
+                        query='status'
+                        placeholder='Status'
+                        options={paymentStatusValues}
+                    />
+                    <QueryReset />
+                </div>
                 <Pagination 
                     pageSize={pageSize}
                     currentPage={page}
@@ -56,7 +68,7 @@ const EventsTransactionsPage = async ({ searchParams }: TransactionsPageProps) =
             </TableQueryWrapper>
 
             { !transactions.results.length
-                ? <Empty text='Fant ingen transaksjoner' />
+                ? <Empty text='Fant ingen transaksjoner' className='mt-12' />
                 : <TransactionsTable transactions={transactions.results} />
             }
         </Template>

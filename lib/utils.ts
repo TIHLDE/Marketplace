@@ -4,7 +4,7 @@ import { $Enums } from "@prisma/client";
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 
-export function cn(...inputs: ClassValue[]) {
+const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs))
 }
 
@@ -24,5 +24,37 @@ const convertTransactionStatus = (status: string) => {
   return 'Ukjent';
 };
 
+const paymentStatusValues = [
+  {
+    value: OrderStatus.INITIATE,
+    label: "Initiert"
+  },
+  {
+    value: OrderStatus.RESERVED,
+    label: "Reservert"
+  },
+  {
+    value: OrderStatus.CAPTURE,
+    label: "Fanget"
+  },
+  {
+    value: OrderStatus.CANCEL,
+    label: "Avbrutt"
+  },
+  {
+    value: OrderStatus.REFUND,
+    label: "Refundert"
+  },
+  {
+    value: OrderStatus.SALE,
+    label: "Betalt"
+  }
+];
 
-export { convertRole, convertTransactionStatus }
+
+export {
+  cn,
+  convertRole,
+  convertTransactionStatus,
+  paymentStatusValues
+}

@@ -32,7 +32,6 @@ const ADMIN_SIZE_PATH = `${ADMIN_PATH}/size`;
 
 export const ADMIN_EVENTS_TRANSACTIONS_PATHS: PathProps[] = [
     { title: 'Dashboard', href: ADMIN_PATH },
-    { title: 'Arrangementer', href: ADMIN_EVENTS_PATH },
     { title: 'Transaksjoner', href: ADMIN_EVENTS_TRANSACTIONS_PATH }
 ];
 
@@ -40,6 +39,14 @@ export const ADMIN_USER_PAGE_PATHS: PathProps[] = [
     { title: 'Dashboard', href: ADMIN_PATH },
     { title: 'Brukere', href: ADMIN_USER_PATH }
 ];
+
+export const getEventTransactionPagePaths = (name: string, order_id: string): PathProps[] => {
+    return [
+        { title: 'Dashboard', href: ADMIN_PATH },
+        { title: 'Transaksjoner', href: ADMIN_EVENTS_TRANSACTIONS_PATH },
+        { title: name, href: `${ADMIN_EVENTS_TRANSACTIONS_PATH}/${order_id}` }
+    ];
+};  
 
 export const getUserPagePaths = (id: string): PathProps[] => {
     return [

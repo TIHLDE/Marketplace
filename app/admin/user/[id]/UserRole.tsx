@@ -5,7 +5,6 @@ import Role from "@/app/enums/role";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { $Enums, User } from "@prisma/client";
-// import { SelectContent, SelectItem } from "@radix-ui/react-select";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { useFormState, useFormStatus } from "react-dom";
@@ -66,12 +65,6 @@ const UserRole = ({ user }: UserRoleProps) => {
             >
                 { pending ? 'Oppdaterer...' : 'Oppdater' }
             </Button>
-            {/* <button
-                disabled={pending}
-                className='bg-gradient-to-r from-tihlde-500 to-tihlde-700 text-white hover:from-tihlde-600 hover:to-tihlde-700 transition duration-150 ease-in-out font-semibold rounded-md py-2 px-6'
-            >
-                { pending ? 'Oppdaterer...' : 'Oppdater'}
-            </button> */}
         </form>
     );
 };
