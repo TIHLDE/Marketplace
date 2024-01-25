@@ -8,6 +8,14 @@ import hasAccess from "../api/middleware/auth";
 import { superAdminRoles } from "../enums/role";
 
 
+export type Event = {
+    id: number;
+    title: string;
+    image: string;
+    start_date: string;
+    end_date: string;
+};
+
 export type EventTransactionResult = {
     order_id: string;
     created_at: string;
@@ -20,13 +28,7 @@ export type EventTransactionResult = {
         email: string;
         image: string;
     },
-    event: {
-        id: number;
-        title: string;
-        image: string;
-        start_date: string;
-        end_date: string;
-    }
+    event: Event;
 }
 
 export type EventTransaction = {

@@ -7,8 +7,13 @@ import { getEventTransactionPagePaths } from "@/app/utils/paths";
 import { notFound } from "next/navigation";
 import DeletePayment from "./_components/DeletePayment";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { convertTransactionStatus } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { getServerSession } from "next-auth";
+import authOptions from "@/app/auth/authOptions";
+import hasAccess from "@/app/api/middleware/auth";
+import { superAdminRoles } from "@/app/enums/role";
+import EventCard from "./_components/EventCard";
+import TransactionCard from "./_components/TransactionCard";
 
 
 interface TransactionProps {
@@ -17,6 +22,7 @@ interface TransactionProps {
 
 const EventsTransactionPage = async ({ params }: TransactionProps) => {
     const transaction = await getTransaction(params.id);
+    const session = await getServerSession(authOptions);
 
     if (!transaction) notFound();
 
@@ -33,40 +39,12 @@ const EventsTransactionPage = async ({ params }: TransactionProps) => {
                         description={`Ordre ID: ${transaction.order_id}`}
                     />
                 </div>
-                <DeletePayment order_id={transaction.order_id} />
+                { hasAccess(session!.role, superAdminRoles) && <DeletePayment order_id={transaction.order_id} /> }
             </HeaderWrapper>
 
-            <div className='flex justify-between'>
-                <Card className='max-w-lg w-full'>
-                    <CardHeader className='flex flex-row items-center justify-between'>
-                        <CardTitle>
-                            {transaction.event.title}
-                        </CardTitle>
-                        <h1>
-                            Status: {convertTransactionStatus(transaction.status)}
-                        </h1>
-                    </CardHeader>
-                    <CardContent className='space-y-2'>
-                        <img 
-                            className='mx-auto rounded-xl'
-                            src={transaction.event.image ? transaction.event.image : '/TihldeBackground.jpg'}
-                            alt='Bilde av arrangementet'
-                        />
-                        <div>
-                            <h1>
-                                <span className='font-semibold'>Startdato:</span> {new Date(transaction.event.start_date).toLocaleTimeString()} {new Date(transaction.event.start_date).toLocaleDateString()}
-                            </h1>
-                            <h1>
-                                <span className='font-semibold'>Sluttdato:</span> {new Date(transaction.event.end_date).toLocaleTimeString()} {new Date(transaction.event.end_date).toLocaleDateString()}
-                            </h1>
-                        </div>
-                    </CardContent>
-                    <CardFooter>
-                        <Button>
-                            Gå til arrangement
-                        </Button>
-                    </CardFooter>
-                </Card>
+            <div className='flex justify-between space-x-8'>
+                <EventCard status={transaction.status} event={transaction.event} />
+                <TransactionCard orderId={transaction.order_id} />
             </div>
         </Template>
     );

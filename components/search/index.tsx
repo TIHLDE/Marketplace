@@ -98,7 +98,7 @@ const QuerySelect = ({
             onValueChange={value => handleSelect(value)}
         >
             <SelectTrigger
-                className={cn('w-[100px] border-dashed', className)}
+                className={cn('w-[180px] border-dashed', className)}
             >
                 <SelectValue placeholder={placeholder} />
             </SelectTrigger>

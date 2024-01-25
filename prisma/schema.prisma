@@ -172,8 +172,14 @@ model Notification {
   updatedAt DateTime @updatedAt
 }
 
+model VippsToken {
+  id         String   @id @default(cuid())
+  token      String   @db.Text()
+  expiresAt  String
+}
+
 model VerificationToken {
-  identifier String
+  identifier String   
   token      String   @unique
   expires    DateTime
 

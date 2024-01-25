@@ -29,6 +29,7 @@ export const getVippsToken = async () => {
 };
 
 export const isValidVippsToken = (expiresAt: string) => {
+    if (!expiresAt) return false;
     const now = new Date().getTime();
     const expiresAtTime = new Date(expiresAt).getTime();
     if (expiresAtTime <= now) {
