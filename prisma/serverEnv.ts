@@ -8,7 +8,7 @@ const serverEnvSchema = z.object({
 
 const getServerEnv = () => {
     const envServer = serverEnvSchema.safeParse({
-        NODE_ENV: process.env.NODE_ENV,
+        NODE_ENV: process.env.MY_NODE_ENV,
         TIHLDE_FAKE_TOKEN: process.env.TIHLDE_FAKE_TOKEN
     });
 

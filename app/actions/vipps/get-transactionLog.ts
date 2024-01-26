@@ -27,7 +27,6 @@ export const getTransactionLog = async (orderId: string): Promise<TransactionLog
 
     try {
         let vippsToken = await getVippsTokenFromDB();
-
         if (!isValidVippsToken(vippsToken.expiresAt)) {
             vippsToken = await getVippsToken();
             await updateVippsTokenInDB({

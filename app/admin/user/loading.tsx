@@ -11,7 +11,7 @@ import TableRow from "../_components/table/Row";
 import TableCellSkeleton from "@/app/components/skeleton/TableCell";
 
 
-const LoadingUserPage = () => {
+const LoadingUserPage = async () => {
     return (
         <Template>
             <HeaderWrapper>

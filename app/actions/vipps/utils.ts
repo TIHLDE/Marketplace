@@ -52,7 +52,7 @@ export const updateVippsTokenInDB = async (token: VippsToken): Promise<void> => 
     await createToken(token);
 };
 
-export const isValidVippsToken = async (expiresAt: string) => {
+export const isValidVippsToken = (expiresAt: string) => {
     if (!expiresAt) return false;
 
     const now = new Date().getTime();
