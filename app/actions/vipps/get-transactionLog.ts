@@ -26,14 +26,16 @@ export const getTransactionLog = async (orderId: string): Promise<TransactionLog
     if (!hasAccess(session!.role, adminRoles)) throw new Error('Du har ikke tilgang til å hente transaksjonsloggen.');
 
     try {
-        let vippsToken = await getVippsTokenFromDB();
-        if (!isValidVippsToken(vippsToken.expiresAt)) {
-            vippsToken = await getVippsToken();
-            await updateVippsTokenInDB({
-                accessToken: vippsToken.accessToken,
-                expiresAt: vippsToken.expiresAt
-            });
-        }
+        // let vippsToken = await getVippsTokenFromDB();
+        // if (!isValidVippsToken(vippsToken.expiresAt)) {
+        //     vippsToken = await getVippsToken();
+        //     await updateVippsTokenInDB({
+        //         accessToken: vippsToken.accessToken,
+        //         expiresAt: vippsToken.expiresAt
+        //     });
+        // }
+
+        const vippsToken = await getVippsToken();
 
         const headers = setVippsHeaders(vippsToken.accessToken);
 
@@ -45,6 +47,7 @@ export const getTransactionLog = async (orderId: string): Promise<TransactionLog
         });
 
         const data = await res.json();
+
         const transactionLog: TransactionLog[] = data.transactionLogHistory;
 
         return transactionLog;

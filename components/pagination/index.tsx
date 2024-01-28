@@ -2,8 +2,7 @@
 
 import PaginationButton from "@/app/components/buttons/Pagination";
 import { cn } from "@/lib/utils";
-import { DoubleArrowLeftIcon, DoubleArrowRightIcon } from "@radix-ui/react-icons";
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { DoubleArrowLeftIcon, DoubleArrowRightIcon, ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import { useRouter, useSearchParams } from "next/navigation";
 
 
@@ -29,7 +28,7 @@ const Pagination = ({ itemCount, pageSize, currentPage, className }: PaginationP
     };
 
     return (
-        <div className={cn('flex items-center space-x-2', className)}>
+        <div className={cn('flex items-center space-x-1', className)}>
             <PaginationButton
                 icon={<DoubleArrowLeftIcon />}
                 disabled={currentPage === 1}

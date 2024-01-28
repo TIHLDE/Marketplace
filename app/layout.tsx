@@ -39,7 +39,7 @@ export default function RootLayout({
         <AuthProvider>
           <Providers>
             <NavBar />
-            <main className='max-w-screen-2xl w-full mx-auto'>
+            <main className='max-w-screen lg:max-w-screen-2xl w-full mx-auto'>
               {children}
             </main>
             <Footer />

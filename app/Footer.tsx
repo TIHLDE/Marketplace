@@ -3,8 +3,8 @@ import { RocketIcon, VercelLogoIcon } from "@radix-ui/react-icons";
 
 const Footer = () => {
     return (
-        <footer className='max-w-8xl w-full border-t border-gray-300 py-20 bg-white'>
-            <div className='max-w-5xl w-full mx-auto flex justify-between'>
+        <footer className='lg:max-w-8xl w-full border-t border-gray-300 py-20 bg-white'>
+            <div className='max-w-5xl w-full mx-auto md:flex justify-between'>
                 <div className='space-y-4'>
                     <h1 className='text-3xl font-bold px-6 pb-2 border-b border-gray-300 text-center text-tihlde'>
                         Kontakt

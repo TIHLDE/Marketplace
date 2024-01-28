@@ -47,7 +47,7 @@ const TableCell = ({
                 <Link
                     href={link}
                 >
-                    <EditIcon className='hover:text-gray-300 w-5 h-5 text-emerald-500' />
+                    <EditIcon className='w-5 h-5 hover:text-gray-300' />
                 </Link>
             ) : (
                 children
